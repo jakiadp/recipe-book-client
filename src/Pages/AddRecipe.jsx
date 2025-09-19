@@ -8,9 +8,29 @@ const AddRecipe = () => {
 
  
 
-  const handleSubmit = (e) => {
+  const handleAddRecipe = (e) => {
     e.preventDefault();
-    
+    const form = e.target;
+    const formData = new FormData(form);
+    const newRecipe = Object.fromEntries(formData.entries());
+    console.log(newRecipe);
+
+    // send to recipe db
+    fetch('http://localhost:3000/recipes',{
+        method:'POST',
+        headers:{
+            'content-type': 'application/json'
+        },
+
+       body: JSON.stringify(newRecipe)
+
+    })
+
+    .then(res => res.json())
+    .then(data => {
+       console.log('after add coffee',data)
+    })
+
   };
     return (
         <div className='w-11/12 m-10'>
@@ -22,7 +42,7 @@ const AddRecipe = () => {
        <p className='mb-5 text-center'> Food is more than just fuel for the body it’s a powerful expression of culture, tradition, and identity. Every region of the world offers unique flavors, ingredients, and cooking techniques that tell stories passed down through generations. </p>
                 
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleAddRecipe}
       className="space-y-6"
     >
       
