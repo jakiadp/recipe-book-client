@@ -1,9 +1,15 @@
 import React from 'react';
+import Banar from '../Component/Banar';
+import Foodu from '../Component/Foodu';
+
 
 const Home = () => {
     return (
         <div>
-            <h1>ami home</h1>
+        
+<Banar></Banar>
+<Foodu></Foodu>
+           
         </div>
     );
 };
