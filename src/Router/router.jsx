@@ -7,6 +7,7 @@ import LogIn from '../Pages/LogIn';
 import Register from '../Pages/Register';
 import UpdateRecipe from '../Pages/UpdateRecipe';
 import Error from '../Pages/Error';
+import RecipeDetails from '../Pages/RecipeDetails';
 
 
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader:()=> fetch('http://localhost:3000/recipes'),
         Component: Home,     // ✅ ekhaneo same
       },
       {
@@ -37,9 +39,15 @@ const router = createBrowserRouter([
       {
         path:"/*",
         Component:Error
-      }
+      },
+      
     ],
   },
+  {
+    path:'/recipeDetails/:_id',
+     loader:()=> fetch('http://localhost:3000/recipes'),
+    Component:RecipeDetails
+  }
 ]);
 
 export default router;

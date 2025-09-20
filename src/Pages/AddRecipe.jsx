@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const AddRecipe = () => {
@@ -16,20 +17,28 @@ const AddRecipe = () => {
     console.log(newRecipe);
 
     // send to recipe db
-    fetch('http://localhost:3000/recipes',{
-        method:'POST',
-        headers:{
-            'content-type': 'application/json'
-        },
+fetch('http://localhost:3000/recipes',{
+  method:'POST',
+  headers:{
+    'content-type': 'application/json'
+  },
+  body: JSON.stringify(newRecipe)
+})
+.then(res => res.json())
+.then(data =>{
+  if(data.insertedId){
+      console.log('after data db',data)
+    Swal.fire({
+  title: "Recipe added successfully",
+  icon: "success",
+  draggable: true
+});
+// form.reset()
+  }
 
-       body: JSON.stringify(newRecipe)
+})
+   
 
-    })
-
-    .then(res => res.json())
-    .then(data => {
-       console.log('after add coffee',data)
-    })
 
   };
     return (
