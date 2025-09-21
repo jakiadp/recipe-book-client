@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
-import Home from '../Pages/Home';
+
 import MainLayout from '../MainLayout/MainLayout';
 import AddRecipe from '../Pages/AddRecipe';
 import LogIn from '../Pages/LogIn';
@@ -8,7 +8,7 @@ import Register from '../Pages/Register';
 import UpdateRecipe from '../Pages/UpdateRecipe';
 import Error from '../Pages/Error';
 import RecipeDetails from '../Pages/RecipeDetails';
-import UpdateRecipeee from '../Pages/UpdateRecipeee';
+import Home from '../Pages/Home';
 
 
 const router = createBrowserRouter([
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       {
         index: true,
         loader:()=> fetch('http://localhost:3000/recipes'),
-        Component: Home,     // ✅ ekhaneo same
+        Component: Home ,     // ✅ ekhaneo same
       },
       {
         path: "/addRecipe",
@@ -42,13 +42,11 @@ const router = createBrowserRouter([
         Component:Error
       },
       {
-        path:'/upadeteRecipe',
-        Component:<UpdateRecipe></UpdateRecipe>
+        path:'/upadeteRecipe/:id',
+          loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        Component: UpdateRecipe,
       },
-      {
-        path:'/repipeee/:id',
-        Component:UpdateRecipeee,
-      }
+     
       
     ],
   },
@@ -56,7 +54,8 @@ const router = createBrowserRouter([
     path:'/recipeDetails/:_id',
      loader:()=> fetch('http://localhost:3000/recipes'),
     Component:RecipeDetails
-  }
+  },
+ 
 ]);
 
 export default router;

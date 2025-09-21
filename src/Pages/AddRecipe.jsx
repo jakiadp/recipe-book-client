@@ -69,6 +69,7 @@ fetch('http://localhost:3000/recipes',{
           name="photo"
           className="border rounded w-full p-2"
           placeholder='Photo Url'
+           required
         />
       </div>
 
@@ -153,7 +154,7 @@ fetch('http://localhost:3000/recipes',{
                 type="checkbox"
                 name="categories"
                 value={cat}
-                
+                required
                 placeholder='Categori'
               />
               <span>{cat}</span>
@@ -170,6 +171,7 @@ fetch('http://localhost:3000/recipes',{
           name='like'
           placeholder='Like'
           className="border rounded w-full p-2 bg-gray-100 text-gray-600 mb-4"
+           required
         />
       </div>
 

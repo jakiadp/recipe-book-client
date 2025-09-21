@@ -1,26 +1,48 @@
 import React from 'react';
-  const categoryOptions = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'];
-  const cuisineOptions = ['Italian', 'Mexican', 'Indian', 'Chinese', 'Others'];
+import { useLoaderData } from 'react-router';
 
-  const handleUpdateRecipe = (e) => {
-        e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const newRecipe = Object.fromEntries(formData.entries());
-    console.log(newRecipe);
-
-  }
+  
 
 const UpdateRecipe = () => {
+
+
+
+const categoryOptions = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'];
+  const cuisineOptions = ['Italian', 'Mexican', 'Indian', 'Chinese', 'Others'];
+
+const { _id, photo,title,ingredients,instructions,cuisine,categories,prepTime,like} = useLoaderData(); 
+
+  const handleUpdateRecipe = e => {
+        e.preventDefault();
+       const form = e.target;
+    const formData = new FormData(form);
+    const updateRecipe = Object.fromEntries(formData.entries());
+    console.log(updateRecipe);
+
+
+fetch(`http://localhost:3000/recipes/${_id}`,{
+  method:"PUT",
+  headers:{
+    'content-type' : 'application/json'
+  },
+  body:JSON.stringify(updateRecipe)
+})
+.then(res => res.json())
+.then(data =>{
+  console.log(data);
+})
+  
+  }
+
+
+
     return (
         <div className='w-11/12 m-10'>
-            <h1 className="text-3xl font-bold" >Update Recipe</h1>
+            <h1 className="text-3xl font-bold text-center mb-6" >Update Recipe</h1>
 
 
-    <div className='max-w-2xl mx-auto bg-base-200 p-6 rounded-lg shadow-md '>
-     <h2 className="text-2xl font-bold mb-4 text-center">Add a New Recipe</h2>
-       <p className='mb-5 text-center'> Food is more than just fuel for the body it’s a powerful expression of culture, tradition, and identity. Every region of the world offers unique flavors, ingredients, and cooking techniques that tell stories passed down through generations. </p>
-                
+    <div className='max-w-2xl mx-auto bg-base-200 p-6 rounded-lg shadow-md hover:shadow-2xl'>
+          
     <form
       onSubmit={handleUpdateRecipe}
       className="space-y-6"
@@ -38,6 +60,7 @@ const UpdateRecipe = () => {
           
           
           name="photo"
+          defaultValue={photo}
           className="border rounded w-full p-2"
           placeholder='Photo Url'
         />
@@ -49,6 +72,7 @@ const UpdateRecipe = () => {
         <input
           type="text"
           name="title"
+          defaultValue={title}
           placeholder='Title'
           className="border rounded w-full p-2"
           required
@@ -60,6 +84,7 @@ const UpdateRecipe = () => {
         <label className="block font-medium mb-1">Ingredients</label>
         <textarea
           name="ingredients"
+           defaultValue={ingredients}
           type="text"
            placeholder='Ingredients'  
           rows="3"
@@ -73,6 +98,8 @@ const UpdateRecipe = () => {
         <label className="block font-medium mb-1">Instructions</label>
         <textarea
           name="instructions"
+           defaultValue={instructions}
+          
           type="text"
             placeholder='Ingredients'
           rows="4"
@@ -86,7 +113,7 @@ const UpdateRecipe = () => {
         <label className="block font-medium mb-1">Cuisine Type</label>
         <select
           name="cuisine"
-          
+           defaultValue={cuisine}
           placeholder='Ingredients'
           className="border rounded w-full p-2"
           required
@@ -106,7 +133,7 @@ const UpdateRecipe = () => {
         <input
           type="number"
           name="prepTime"
-          
+           defaultValue={prepTime}
           placeholder='Prearation Time'
           className="border rounded w-full p-2"
           min="1"
@@ -124,7 +151,7 @@ const UpdateRecipe = () => {
                 type="checkbox"
                 name="categories"
                 value={cat}
-                
+                defaultValue={categories}
                 placeholder='Categori'
               />
               <span>{cat}</span>
@@ -139,6 +166,7 @@ const UpdateRecipe = () => {
         <input
           type="number"
           name='like'
+           defaultValue={like}
           placeholder='Like'
           className="border rounded w-full p-2 bg-gray-100 text-gray-600 mb-4"
         />
@@ -150,7 +178,7 @@ const UpdateRecipe = () => {
           type="submit"
           className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-6 rounded transition w-full"
         >
-          Add Recipe
+          Update Recipe
         </button>
       </div>
       

@@ -77,7 +77,7 @@ const RecipeDetailsCard = ({recipe}) => {
            
             </div>
             <div className='flex justify-around mt-10 px-20 gap-10 '>
-                 <Link to={`/repipeee/${_id}`} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full">Update button</Link>
+                 <Link to={`/upadeteRecipe/${_id}`} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full">Update button</Link>
             <button onClick={()=> handleDelete(_id)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full ">Delete button</button>
             </div>
             
