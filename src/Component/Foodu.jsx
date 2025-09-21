@@ -41,7 +41,7 @@ const Foodu = () => {
   </figure>  <div className="card-body">
     <h2 className="card-title">
       Egg Pleter
-      <div className="badge badge-secondary">Femus</div>
+      <div className="badge badge-secondary ">Femus</div>
     </h2>
     <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
     <div className="card-actions justify-end">
@@ -74,7 +74,7 @@ const Foodu = () => {
 {/* 4
  */}
 
- <div className="card bg-base-300 w-96 shadow-sm hover:shadow-2xl">
+ <div className="card bg-base-300 w-96 shadow-sm hover:shadow-2xl ">
   <figure>
     <img
       src={image11}
@@ -83,7 +83,7 @@ const Foodu = () => {
   </figure>
   <div className="card-body">
     <h2 className="card-title">
-      Card Title
+      Beff Carry
       <div className="badge badge-secondary">Femus</div>
     </h2>
     <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
