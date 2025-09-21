@@ -43,7 +43,7 @@ fetch('http://localhost:3000/recipes',{
   };
     return (
         <div className='w-11/12 m-10'>
-            <h1>add recipe</h1>
+            <h1 className="text-3xl font-bold" >Add Recipe</h1>
 
 
     <div className='max-w-2xl mx-auto bg-base-200 p-6 rounded-lg shadow-md '>

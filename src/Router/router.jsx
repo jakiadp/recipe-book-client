@@ -8,6 +8,7 @@ import Register from '../Pages/Register';
 import UpdateRecipe from '../Pages/UpdateRecipe';
 import Error from '../Pages/Error';
 import RecipeDetails from '../Pages/RecipeDetails';
+import UpdateRecipeee from '../Pages/UpdateRecipeee';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
         path:"/*",
         Component:Error
       },
+      {
+        path:'/upadeteRecipe',
+        Component:<UpdateRecipe></UpdateRecipe>
+      },
+      {
+        path:'/repipeee/:id',
+        Component:UpdateRecipeee,
+      }
       
     ],
   },

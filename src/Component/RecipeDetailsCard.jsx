@@ -1,7 +1,51 @@
 import React from 'react';
+import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const RecipeDetailsCard = ({recipe}) => {
-    const {photo,title,ingredients,instructions,cuisine,categories,prepTime,like} =recipe;
+    const {_id,photo,title,ingredients,instructions,cuisine,categories,prepTime,like} =recipe;
+
+    const handleDelete =(_id) =>{
+        console.log(_id);
+        Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+    console.log(result.isConfirmed)
+  if (result.isConfirmed) {
+ 
+    fetch(`http://localhost:3000/recipes/${_id}`,{
+        method: 'DELETE'
+    })
+    .then( res => res.json())
+    .then(data => {
+        if(data.deletedCount){
+            
+
+               Swal.fire({
+      title: "Deleted!",
+      text: "Your recipe has been deleted.",
+      icon: "success"
+    });
+        }
+        
+
+             
+        
+       
+    })
+
+
+  }
+});
+    }
+
+
     return (
         <div className='mt-20  w-350 hover:bg-base-200  hover:shadow-2xl rounded-2xl  mx-auto p-10'>
             <h1 className=' mb-10 text-3xl font-bold text-black text-center'>Recipe Details</h1>
@@ -33,8 +77,8 @@ const RecipeDetailsCard = ({recipe}) => {
            
             </div>
             <div className='flex justify-around mt-10 px-20 gap-10 '>
-                 <button className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full">Update button</button>
-            <button className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full ">Delete button</button>
+                 <Link to={`/repipeee/${_id}`} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full">Update button</Link>
+            <button onClick={()=> handleDelete(_id)} className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold w-full ">Delete button</button>
             </div>
             
         </div>
