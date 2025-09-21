@@ -1,3 +1,5 @@
+import { GoArrowLeft } from "react-icons/go";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 
@@ -33,7 +35,7 @@ fetch('http://localhost:3000/recipes',{
   icon: "success",
   draggable: true
 });
-// form.reset()
+form.reset()
   }
 
 })
@@ -43,7 +45,7 @@ fetch('http://localhost:3000/recipes',{
   };
     return (
         <div className='w-11/12 m-10'>
-            <h1 className="text-3xl font-bold" >Add Recipe</h1>
+            <Link to="/" ><div className='text-xl font-semibold mt-2 pl-10 flex ' ><GoArrowLeft /> <p className='hover:text-shadow-xl hover:text-green-800'>home</p></div></Link>
 
 
     <div className='max-w-2xl mx-auto bg-base-200 p-6 rounded-lg shadow-md '>
@@ -154,7 +156,7 @@ fetch('http://localhost:3000/recipes',{
                 type="checkbox"
                 name="categories"
                 value={cat}
-                required
+                
                 placeholder='Categori'
               />
               <span>{cat}</span>

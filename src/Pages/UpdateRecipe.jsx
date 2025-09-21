@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
   
 
@@ -9,6 +10,8 @@ const UpdateRecipe = () => {
 
 const categoryOptions = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'];
   const cuisineOptions = ['Italian', 'Mexican', 'Indian', 'Chinese', 'Others'];
+
+
 
 const { _id, photo,title,ingredients,instructions,cuisine,categories,prepTime,like} = useLoaderData(); 
 
@@ -29,7 +32,16 @@ fetch(`http://localhost:3000/recipes/${_id}`,{
 })
 .then(res => res.json())
 .then(data =>{
-  console.log(data);
+      if(data.modifiedCount){
+        Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your work has been saved",
+  showConfirmButton: false,
+  timer: 1500
+});
+      }
+  
 })
   
   }
