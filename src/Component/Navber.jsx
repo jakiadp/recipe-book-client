@@ -33,7 +33,7 @@ const Navber = () => {
     <ul className="menu menu-horizontal px-1 gap-5">
            <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/">Home</NavLink>
        <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/addRecipe">Add Recipe</NavLink>
-       <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/updateRecipe">Update Recipe</NavLink>
+       <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/">Profile</NavLink>
     </ul>
     </div>
 
