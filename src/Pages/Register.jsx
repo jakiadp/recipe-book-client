@@ -4,16 +4,43 @@ import { AuthContext } from '../Contex/AuthContex';
 
 const Register = () => {
 
-	const{creareUser} = use(AuthContext);
-	console.log(creareUser);
+	const{createUser} = use(AuthContext);
+	
 
 	const handleRegister = e => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const email = formData.get('email'); 
-	const password = formData.get('password');
-    console.log(password, email); 
+   const {email, password,...userProfile} = Object.fromEntries(formData.entries());
+    console.log(password, email,userProfile); 
+
+
+
+	// create fire base
+
+	createUser(email,password)
+	.then(result =>{
+		console.log(result.user);
+
+     fetch('http://localhost:3000/users',{
+		method:'POST',
+		headers:{
+			'content':'aplication/json'
+		},
+		body: JSON.stringify()
+
+	 })
+	 .then(res => res.json())
+	 .then(data => {
+		console.log('after',data)
+	 })
+
+
+
+	})
+	.catch(error =>{
+		console.log(error)
+	})
 	
 
 }
@@ -34,10 +61,7 @@ const Register = () => {
 				<label htmlFor="email" className="block text-sm">Name</label>
 				<input type="text" name="name" id="name" placeholder="Name" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 			</div>
-			 <div className="space-y-2">
-				<label htmlFor="email" className="block text-sm">Email address</label>
-				<input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
-			</div>
+			
           
 		  <div className="space-y-2">
 				<label htmlFor="email" className="block text-sm">Address</label>
@@ -46,7 +70,7 @@ const Register = () => {
 
 			<div className="space-y-2">
 				<label htmlFor="email" className="block text-sm">Phone Number</label>
-				<input type="number" name="number" id="email" placeholder="Phone Number" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+				<input type="text" name="number" id="number" placeholder="Phone Number" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 			</div>
 
 
@@ -55,13 +79,18 @@ const Register = () => {
 				<input type="text" name="photo" id="photo" placeholder="Photo Url" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 			</div>
 
+			 <div className="space-y-2">
+				<label htmlFor="email" className="block text-sm">Email address</label>
+				<input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md  border-gray-300  bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+			</div>
+
 			<div className="space-y-2">
 	
 					<label htmlFor="password" className="text-sm">Password</label>
 					<input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
 			</div>
 		</div>
-		<button  className='bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold btn w-full'>Sign Up</button>
+		<button  type="submit" className='bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-lg font-semibold btn w-full'>Sign Up</button>
 	</form>
 
     </div>
