@@ -1,11 +1,28 @@
 import { ChefHat } from 'lucide-react';
-import React from 'react';
-import { NavLink } from 'react-router';
+import React, { use } from 'react';
+import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../Contex/AuthContex';
 
 const Navber = () => {
+
+  const {logOut,user,} = use(AuthContext);
+
+    const handleLogout = () => {
+    console.log('user trying to logout');
+    logOut()
+    .then(() => {
+      alert("Logout successful.")
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+
+
     return (
 
-      <nav className="bg-emerald-700 text-white px-6 py-4 w-11/12 mx-auto ">
+      <nav className="mx-auto w-11/12 bg-emerald-700 text-white px-6 py-4  ">
       <div className=" flex items-center justify-around">
 
 
@@ -39,12 +56,18 @@ const Navber = () => {
 
         {/* Right Side Icons */}
         <div className="flex items-center gap-4">
-          <NavLink to="/logIn" className="text-white hover:bg-emerald-600">
-            LogIn
-          </NavLink>
-          <NavLink to="/register" className="text-white hover:bg-emerald-600">
+         
+           { 
+          user ? <button onClick={handleLogout} className="text-white hover:bg-emerald-600">Logout</button> :
+         (<>
+         <Link to="logIn" className="text-white hover:bg-emerald-600">Login</Link>
+            <NavLink to="/register" className="text-white hover:bg-emerald-600">
             Register
           </NavLink>
+         </>)
+        }
+         
+         
         </div>
       </div>
     </nav>

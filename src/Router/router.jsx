@@ -9,6 +9,7 @@ import UpdateRecipe from '../Pages/UpdateRecipe';
 import Error from '../Pages/Error';
 import RecipeDetails from '../Pages/RecipeDetails';
 import Home from '../Pages/Home';
+import Users from '../Pages/Users';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
       {
         path:"/*",
         Component:Error
+      },
+      {
+         path:"/users",
+         loader:() => fetch('http://localhost:3000/users'),
+         Component:Users
       },
       {
         path:'/upadeteRecipe/:id',

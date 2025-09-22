@@ -1,8 +1,12 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Contex/AuthContex';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+
+	 const navigate = useNavigate();
+	 const location = useLocation();
 
 	const{createUser} = use(AuthContext);
 	
@@ -11,8 +15,10 @@ const Register = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-   const {email, password,...userProfile} = Object.fromEntries(formData.entries());
-    console.log(password, email,userProfile); 
+   const {email, password,...rest} = Object.fromEntries(formData.entries());
+    
+ 
+    
 
 
 
@@ -21,18 +27,35 @@ const Register = () => {
 	createUser(email,password)
 	.then(result =>{
 		console.log(result.user);
+		navigate(`${location.state ? location.state : "/"}`);
+
+		const userProfile = {email, ...rest,
+
+			creationTime: result.user?.metadata?.creationTime,
+				lastSignInTime: result.user?.metadata?.lastSignInTime,
+		}
 
      fetch('http://localhost:3000/users',{
 		method:'POST',
 		headers:{
-			'content':'aplication/json'
+			    'Content-Type': 'application/json'
+
 		},
-		body: JSON.stringify()
+		body: JSON.stringify(userProfile)
 
 	 })
 	 .then(res => res.json())
 	 .then(data => {
-		console.log('after',data)
+		if(data.insertedId){
+			Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Your accound is created ",
+  showConfirmButton: false,
+  timer: 1500
+});}
+
+		
 	 })
 
 
@@ -48,7 +71,7 @@ const Register = () => {
 
 
     return (
-        <div className='mx-auto w-11/12 items-center flex justify-center my-20'>
+        <div className='mx-auto  w-11/12 items-center flex justify-center my-20'>
 <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 bg-gray-50 text-gray-800 hover:shadow-2xl">
 	<h2 className="mb-3 text-3xl font-semibold text-center">Sign Up</h2>
 	<p className="text-sm text-center text-gray-600">Already have account?

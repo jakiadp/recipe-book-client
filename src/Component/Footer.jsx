@@ -1,3 +1,4 @@
+import { ChefHat } from 'lucide-react';
 import React from 'react';
 import { NavLink } from 'react-router';
 
@@ -6,9 +7,10 @@ const Footer = () => {
         <div>
 <footer className="footer footer-horizontal footer-center bg-emerald-700 text-white py-16 px-6 w-11/12 mx-auto rounded p-10">
   <nav className="grid grid-flow-col gap-4">
-           <NavLink to="/">Home</NavLink>
-       <NavLink to="/addRecipe">Add Recipe</NavLink>
-       <NavLink to="/">About</NavLink>
+           <div className="flex items-center gap-2">
+          <ChefHat className="h-6 w-6" />
+          <span className="text-xl font-semibold">CookMedia</span>
+        </div>
   </nav>
   <nav>
     <div className="grid grid-flow-col gap-4">
