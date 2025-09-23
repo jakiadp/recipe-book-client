@@ -20,10 +20,10 @@ const { _id, photo,title,ingredients,instructions,cuisine,categories,prepTime,li
        const form = e.target;
     const formData = new FormData(form);
     const updateRecipe = Object.fromEntries(formData.entries());
-    console.log(updateRecipe);
+    // console.log(updateRecipe);
 
 
-fetch(`http://localhost:3000/recipes/${_id}`,{
+fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes/${_id}`,{
   method:"PUT",
   headers:{
     'content-type' : 'application/json'

@@ -16,12 +16,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID,
 
 
-  // apiKey: import.meta.env.RECIPE_API_KEY,
-  // authDomain:import.meta.env.RECIPE_AUTH_DOMAIN ,
-  // projectId:import.meta.env.RECIPE_PROJECT_ID ,
-  // storageBucket:import.meta.env.RECIPE_STORAGE_BUCKET,
-  // messagingSenderId:import.meta.env.RECIPE_MESSAGING_SENDER_ID ,
-  // appId: import.meta.env.RECIPE_APP_ID
+  
 
 };
 // Initialize Firebase

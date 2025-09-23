@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader:()=> fetch('http://localhost:3000/recipes'),
+        loader:()=> fetch('https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes'),
         hydrateFallbackElement: <Loading></Loading>,
         Component: Home ,     // ✅ ekhaneo same
       },
@@ -49,13 +49,13 @@ const router = createBrowserRouter([
       },
       {
          path:"/users",
-         loader:() => fetch('http://localhost:3000/users'),
+         loader:() => fetch('https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/users'),
          hydrateFallbackElement: <Loading></Loading>,
          Component:Users
       },
       {
         path:'/upadeteRecipe/:id',
-          loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
+          loader: ({params}) => fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
           Component: UpdateRecipe,
       },
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/recipeDetails/:_id',
-     loader:()=> fetch('http://localhost:3000/recipes'),
+     loader:()=> fetch('https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes'),
      hydrateFallbackElement: <Loading></Loading>,
     element: <PrivateRouter>
       <RecipeDetails></RecipeDetails>

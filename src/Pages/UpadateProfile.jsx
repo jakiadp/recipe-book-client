@@ -21,7 +21,7 @@ const UpadateProfile = () => {
   // Load user info from MongoDB
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:3000/users/${email}`)
+      fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/users/${email}`)
         .then(res => res.json())
         .then(data => {
           setUser(data);
@@ -42,7 +42,7 @@ const UpadateProfile = () => {
       phone,
     };
 
-    const res = await fetch(`http://localhost:3000/users/${email}`, {
+    const res = await fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/users/${email}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

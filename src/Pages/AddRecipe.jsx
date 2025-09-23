@@ -19,7 +19,7 @@ const AddRecipe = () => {
     console.log(newRecipe);
 
     // send to recipe db
-fetch('http://localhost:3000/recipes',{
+fetch('https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes',{
   method:'POST',
   headers:{
     'content-type': 'application/json'

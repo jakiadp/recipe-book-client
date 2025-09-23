@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router';
 
 const Users = () => {
     const user = useLoaderData();
-    console.log(user);
+    // console.log(user);
     return (
         <div>
             <h1>user:{user.length}</h1>

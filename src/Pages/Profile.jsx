@@ -5,7 +5,7 @@ const Profile = ({ email }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/users`)
+    fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/users`)
       .then(res => res.json())
       .then(data => {
         const matchedUser = data.find(u => u.email === email);

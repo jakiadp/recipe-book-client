@@ -7,7 +7,7 @@ const RecipeDetailsCard = ({recipe}) => {
     const {_id,photo,title,ingredients,instructions,cuisine,categories,prepTime,like} =recipe;
 
     const handleDelete =(_id) =>{
-        console.log(_id);
+        // console.log(_id);
         Swal.fire({
   title: "Are you sure?",
   text: "You won't be able to revert this!",
@@ -17,10 +17,10 @@ const RecipeDetailsCard = ({recipe}) => {
   cancelButtonColor: "#d33",
   confirmButtonText: "Yes, delete it!"
 }).then((result) => {
-    console.log(result.isConfirmed)
+    // console.log(result.isConfirmed)
   if (result.isConfirmed) {
  
-    fetch(`http://localhost:3000/recipes/${_id}`,{
+    fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes/${_id}`,{
         method: 'DELETE'
     })
     .then( res => res.json())
