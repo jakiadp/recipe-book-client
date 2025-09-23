@@ -10,6 +10,10 @@ import Error from '../Pages/Error';
 import RecipeDetails from '../Pages/RecipeDetails';
 import Home from '../Pages/Home';
 import Users from '../Pages/Users';
+import Profile from '../Pages/Profile';
+import UpadateProfile from '../Pages/UpadateProfile';
+import PrivateRouter from '../Contex/PrivateRouter';
+import Loading from '../Pages/Loading';
 
 
 const router = createBrowserRouter([
@@ -20,6 +24,7 @@ const router = createBrowserRouter([
       {
         index: true,
         loader:()=> fetch('http://localhost:3000/recipes'),
+        hydrateFallbackElement: <Loading></Loading>,
         Component: Home ,     // ✅ ekhaneo same
       },
       {
@@ -45,13 +50,24 @@ const router = createBrowserRouter([
       {
          path:"/users",
          loader:() => fetch('http://localhost:3000/users'),
+         hydrateFallbackElement: <Loading></Loading>,
          Component:Users
       },
       {
         path:'/upadeteRecipe/:id',
           loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`),
-        Component: UpdateRecipe,
+        hydrateFallbackElement: <Loading></Loading>,
+          Component: UpdateRecipe,
       },
+      {
+        path:'/profile',
+        Component:Profile,
+      },
+
+      {
+        path:'/upadateProfile',
+        Component:UpadateProfile,
+      }
       
      
       
@@ -60,7 +76,10 @@ const router = createBrowserRouter([
   {
     path:'/recipeDetails/:_id',
      loader:()=> fetch('http://localhost:3000/recipes'),
-    Component:RecipeDetails
+     hydrateFallbackElement: <Loading></Loading>,
+    element: <PrivateRouter>
+      <RecipeDetails></RecipeDetails>
+    </PrivateRouter>
   },
  
 ]);

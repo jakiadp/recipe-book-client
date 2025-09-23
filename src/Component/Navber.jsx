@@ -1,7 +1,8 @@
 import { ChefHat } from 'lucide-react';
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
-import { AuthContext } from '../Contex/AuthContex';
+import { AuthContext } from '../Contex/AuthProvider';
+;
 
 const Navber = () => {
 
@@ -44,13 +45,16 @@ const Navber = () => {
         <div className="flex items-center gap-2">
           <ChefHat className="h-6 w-6" />
           <span className="text-xl font-semibold">CookMedia</span>
+          <p>{user && user.email }</p>
         </div>
           </div>
   <div className="navbar-center hidden lg:flex ">
     <ul className="menu menu-horizontal px-1 gap-5">
            <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/">Home</NavLink>
-       <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/addRecipe">Add Recipe</NavLink>
-       <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/">Profile</NavLink>
+       {
+        user ? (<NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/addRecipe">Add Recipe</NavLink>)
+            :  <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/logIn">Add Recipe</NavLink>       }
+       {/* <NavLink className="relative pb-1 text-black hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300" to="/">Profile</NavLink> */}
     </ul>
     </div>
 
@@ -58,7 +62,13 @@ const Navber = () => {
         <div className="flex items-center gap-4">
          
            { 
-          user ? <button onClick={handleLogout} className="text-white hover:bg-emerald-600">Logout</button> :
+          user ?( <>
+                 <button onClick={handleLogout} className="text-white hover:bg-emerald-600">Logout</button>
+                  <NavLink to="/profile" className="text-white hover:bg-emerald-600">
+            Profile
+          </NavLink>
+          </>)
+          :
          (<>
          <Link to="logIn" className="text-white hover:bg-emerald-600">Login</Link>
             <NavLink to="/register" className="text-white hover:bg-emerald-600">

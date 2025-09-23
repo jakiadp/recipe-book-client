@@ -1,7 +1,7 @@
 import React, { use, useState,  } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { AuthContext } from '../Contex/AuthContex';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Contex/AuthProvider';
 
 const LogIn = () => {
 
