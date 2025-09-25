@@ -23,7 +23,7 @@ const { _id, photo,title,ingredients,instructions,cuisine,categories,prepTime,li
     // console.log(updateRecipe);
 
 
-fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes/${_id}`,{
+fetch(`https://recipe-book-server-lemon.vercel.app/recipes/${_id}`,{
   method:"PUT",
   headers:{
     'content-type' : 'application/json'

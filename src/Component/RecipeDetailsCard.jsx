@@ -20,7 +20,7 @@ const RecipeDetailsCard = ({recipe}) => {
     // console.log(result.isConfirmed)
   if (result.isConfirmed) {
  
-    fetch(`https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/recipes/${_id}`,{
+    fetch(`https://recipe-book-server-lemon.vercel.app/recipes/${_id}`,{
         method: 'DELETE'
     })
     .then( res => res.json())

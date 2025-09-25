@@ -35,7 +35,7 @@ const Register = () => {
 				lastSignInTime: result.user?.metadata?.lastSignInTime,
 		}
 
-     fetch('https://recipe-book-server-auk8fhi8u-jakiadp-1900s-projects.vercel.app/users',{
+     fetch('https://recipe-book-server-lemon.vercel.app/users',{
 		method:'POST',
 		headers:{
 			    'Content-Type': 'application/json'
